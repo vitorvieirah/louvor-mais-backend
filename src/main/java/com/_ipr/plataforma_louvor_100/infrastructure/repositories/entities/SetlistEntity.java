@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-public class Setlist {
+public class SetlistEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -30,5 +30,5 @@ public class Setlist {
 
     @ManyToMany
     @JoinColumn(name = "id_integrante", nullable = false)
-    private List<Integrante> folgas;
+    private List<IntegranteEntity> folgas;
 }

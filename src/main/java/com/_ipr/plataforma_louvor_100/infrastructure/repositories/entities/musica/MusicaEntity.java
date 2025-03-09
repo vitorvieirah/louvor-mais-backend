@@ -1,5 +1,7 @@
 package com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica;
 
+import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
+import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
 import jakarta.persistence.*;
 import lombok.*;
 

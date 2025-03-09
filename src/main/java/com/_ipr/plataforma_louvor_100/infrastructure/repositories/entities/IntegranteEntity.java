@@ -1,5 +1,6 @@
 package com._ipr.plataforma_louvor_100.infrastructure.repositories.entities;
 
+import com._ipr.plataforma_louvor_100.domain.FuncaoIntegrante;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-public class Integrante {
+public class IntegranteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
