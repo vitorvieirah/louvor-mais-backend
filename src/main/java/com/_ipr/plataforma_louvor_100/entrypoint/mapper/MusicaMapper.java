@@ -5,7 +5,7 @@ import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
 
 public class MusicaMapper {
 
-    public Musica paraDomain(MusicaDto dto) {
+    public static Musica paraDomain(MusicaDto dto) {
         return Musica.builder()
                 .idMusica(dto.idMusica())
                 .nome(dto.nome())
@@ -17,7 +17,7 @@ public class MusicaMapper {
                 .build();
     }
 
-    public MusicaDto paraDto(Musica domain) {
+    public static MusicaDto paraDto(Musica domain) {
         return MusicaDto.builder()
                 .idMusica(domain.getIdMusica())
                 .nome(domain.getNome())

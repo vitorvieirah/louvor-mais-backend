@@ -5,7 +5,7 @@ import com._ipr.plataforma_louvor_100.entrypoint.dto.IntegranteDto;
 
 public class IntegranteMapper {
 
-    public Integrante paraDomain(IntegranteDto dto) {
+    public static Integrante paraDomain(IntegranteDto dto) {
         return Integrante.builder()
                 .idIntegrante(dto.idIntegrante())
                 .nome(dto.nome())
@@ -13,7 +13,7 @@ public class IntegranteMapper {
                 .build();
     }
 
-    public IntegranteDto paraDto(Integrante domain) {
+    public static IntegranteDto paraDto(Integrante domain) {
         return IntegranteDto.builder()
                 .idIntegrante(domain.getIdIntegrante())
                 .nome(domain.getNome())

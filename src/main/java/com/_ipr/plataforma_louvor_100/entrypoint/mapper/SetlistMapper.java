@@ -5,7 +5,7 @@ import com._ipr.plataforma_louvor_100.entrypoint.dto.SetlistDto;
 
 public class SetlistMapper {
 
-    public Setlist paraDomain(SetlistDto dto) {
+    public static Setlist paraDomain(SetlistDto dto) {
         return Setlist.builder()
                 .idSetlist(dto.idSetlist())
                 .data(dto.data())
@@ -14,7 +14,7 @@ public class SetlistMapper {
                 .build();
     }
 
-    public SetlistDto paraDto(Setlist domain) {
+    public static SetlistDto paraDto(Setlist domain) {
         return SetlistDto.builder()
                 .idSetlist(domain.getIdSetlist())
                 .data(domain.getData())
