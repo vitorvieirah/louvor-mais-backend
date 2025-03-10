@@ -1,5 +1,6 @@
 package com._ipr.plataforma_louvor_100.entrypoint.controller;
 
+import com._ipr.plataforma_louvor_100.aplication.MusicaUseCase;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.ResponseDto;
