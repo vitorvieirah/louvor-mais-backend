@@ -8,6 +8,8 @@ import com._ipr.plataforma_louvor_100.entrypoint.mapper.MusicaMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -45,8 +47,8 @@ public class MusicaController {
     }
 
     @GetMapping
-    public ResponseEntity<ResponseDto<Page<MusicaDto>>> listar() {
-        Page<Musica> musicas = useCase.listar();
+    public ResponseEntity<ResponseDto<Page<MusicaDto>>> listar(@PageableDefault(size = 5, page = 0, sort = "name") Pageable pageable) {
+        Page<Musica> musicas = useCase.listar(pageable);
         Page<MusicaDto> resposta = musicas.map(MusicaMapper::paraDto);
         ResponseDto<Page<MusicaDto>> responseDto = new ResponseDto<>(resposta);
         return ResponseEntity.ok(responseDto);

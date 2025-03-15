@@ -19,4 +19,13 @@ public class Musica {
     private DificuldadeMusica dificuldade;
     private String link;
     private String cifra;
+
+    public void setDados(Musica novosDados) {
+        this.nome = novosDados.getNome();
+        this.tom = novosDados.getTom();
+        this.versao = novosDados.getVersao();
+        this.dificuldade = novosDados.getDificuldade();
+        this.link = novosDados.getLink();
+        this.cifra = novosDados.getCifra();
+    }
 }

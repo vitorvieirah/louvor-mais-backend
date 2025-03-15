@@ -2,9 +2,11 @@ package com._ipr.plataforma_louvor_100.aplication;
 
 import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaJaCadastradaException;
 import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaNaoEncontradaException;
+import com._ipr.plataforma_louvor_100.aplication.gateways.MusicaGateway;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,12 +19,13 @@ public class MusicaUseCase {
     private final MusicaGateway gateway;
 
     public Musica cadastrar(Musica novaMusica) {
-        Optional<Musica> musica = consultarPorNome(novaMusica.getNome());
+        Optional<Musica> musica = gateway.consultarPorNome(novaMusica.getNome());
+
         musica.ifPresent(musicaOptional -> {
             throw new MusicaJaCadastradaException();
         });
-        Musica musicaSalva = gateway.salvar(musica);
-        return musicaSalva;
+
+        return gateway.salvar(novaMusica);
     }
 
     public Musica consultarPorId(UUID musicaId) {
@@ -35,8 +38,8 @@ public class MusicaUseCase {
         return musica.get();
     }
 
-    public Page<Musica> listar() {
-        return gateway.listar();
+    public Page<Musica> listar(Pageable pageable) {
+        return gateway.listar(pageable);
     }
 
     public Musica editar(Musica novosDados, UUID idMusica) {
@@ -48,9 +51,5 @@ public class MusicaUseCase {
     public void deletar(UUID idMusica) {
         consultarPorId(idMusica);
         this.gateway.deletar(idMusica);
-    }
-
-    private Optional<Musica> consultarPorNome(String nome) {
-        return gateway.consultarPorNome(nome);
     }
 }
