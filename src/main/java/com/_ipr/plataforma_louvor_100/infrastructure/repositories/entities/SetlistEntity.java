@@ -20,15 +20,24 @@ public class SetlistEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id_setlist")
     private UUID idSetlist;
 
     private LocalDate data;
 
     @ManyToMany
-    @JoinColumn(name = "id_musica", nullable = false)
+    @JoinTable(
+            name = "musicas_setlist",
+            joinColumns = @JoinColumn(name = "id_setlist", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "id_musica", nullable = false)
+    )
     private List<MusicaEntity> musicas;
 
     @ManyToMany
-    @JoinColumn(name = "id_integrante", nullable = false)
+    @JoinTable(
+            name = "folgas_setlist",
+            joinColumns = @JoinColumn(name = "id_setlist", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "id_integrante", nullable = false)
+    )
     private List<IntegranteEntity> folgas;
 }

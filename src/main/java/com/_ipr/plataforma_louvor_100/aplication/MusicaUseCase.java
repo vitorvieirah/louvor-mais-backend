@@ -4,7 +4,7 @@ import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaJaCadastradaEx
 import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaNaoEncontradaException;
 import com._ipr.plataforma_louvor_100.aplication.gateways.MusicaGateway;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
 public class MusicaUseCase {
 
+    @Autowired
     private final MusicaGateway gateway;
+
+    public MusicaUseCase(MusicaGateway gateway) {
+        this.gateway = gateway;
+    }
 
     public Musica cadastrar(Musica novaMusica) {
         Optional<Musica> musica = gateway.consultarPorNome(novaMusica.getNome());

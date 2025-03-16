@@ -17,6 +17,7 @@ public class IntegranteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id_integrante")
     private UUID idIntegrante;
 
     private String nome;

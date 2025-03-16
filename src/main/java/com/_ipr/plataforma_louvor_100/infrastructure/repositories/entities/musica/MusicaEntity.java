@@ -19,6 +19,7 @@ public class MusicaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id_musica")
     private UUID idMusica;
 
     private String nome;

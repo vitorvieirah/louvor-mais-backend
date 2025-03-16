@@ -1,5 +1,6 @@
 package com._ipr.plataforma_louvor_100.entrypoint.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,11 +21,12 @@ public class ResponseDto<D> {
 
     @Getter
     @Setter
+    @Builder
     public static class ErroDto {
-        private List<String> messages;
+        private List<String> mensagens;
     }
 
-    public ResponseDto<D> comErro(ErroDto erro) {
+    public static <D> ResponseDto<D> comErro(ErroDto erro) {
         ResponseDto<D> responseDto = new ResponseDto<>();
         responseDto.setErro(erro);
         return responseDto;
