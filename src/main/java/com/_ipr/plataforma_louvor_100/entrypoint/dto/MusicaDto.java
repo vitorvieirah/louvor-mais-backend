@@ -18,7 +18,6 @@ public record MusicaDto(
         @JsonProperty("nome")
         String nome,
 
-//        @NotBlank(message = "O tom é obrigatório")
         @JsonProperty("tom")
         TomMusica tom,
 
