@@ -11,31 +11,31 @@ import java.util.List;
 
 public class MusicaMapperTest {
 
-    private final Musica musicaTeste = MusicaBuilder.gerarMusica();
+    private final Musica musicaTesteDomain = MusicaBuilder.gerarMusicaDomain();
+    private final MusicaEntity musicaTesteEntity = MusicaBuilder.gerarMusicaEntity();
     private final List<Musica> musicas = MusicaBuilder.gerarListaMusica();
 
     @Test
     void coverteDomainParaEntity() {
-        MusicaEntity resultado = MusicaMapper.paraEntity(musicaTeste);
-        MusicaValidator.validaMusica(MusicaMapper.paraDomain(resultado));
+        MusicaValidator.validaMusicaEntity(MusicaMapper.paraEntity(musicaTesteDomain), musicaTesteEntity);
     }
 
     @Test
     void converteEntityParaDomain() {
-        Musica resultado = MusicaMapper.paraDomain(MusicaMapper.paraEntity(musicaTeste));
-        MusicaValidator.validaMusica(resultado);
+        Musica resultado = MusicaMapper.paraDomain(musicaTesteEntity);
+        MusicaValidator.validaMusicaDomain(resultado, musicaTesteDomain);
     }
 
     @Test
     void converListaDeEntitiesParaListaDeDomains() {
-        List<MusicaEntity> resultado = MusicaMapper.paraEntities(musicas);
-        resultado.forEach(musicaTeste -> MusicaValidator.validaMusica(MusicaMapper.paraDomain(musicaTeste)));
+        List<Musica> resultado = MusicaMapper.paraDomains(musicas.stream().map(MusicaMapper::paraEntity).toList());
+        resultado.forEach(musica -> MusicaValidator.validaMusicaDomain(musica, musicaTesteDomain));
     }
 
     @Test
     void converterListaDeDomainsParaListaDeEntities() {
-        List<Musica> resultado = MusicaMapper.paraDomains(MusicaMapper.paraEntities(musicas));
-        resultado.forEach(MusicaValidator::validaMusica);
+        List<MusicaEntity> resultado = MusicaMapper.paraEntities(musicas);
+        resultado.forEach(musica -> MusicaValidator.validaMusicaEntity(musica, musicaTesteEntity));
     }
 
 }
