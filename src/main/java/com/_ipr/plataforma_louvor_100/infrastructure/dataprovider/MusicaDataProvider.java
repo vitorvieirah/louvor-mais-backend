@@ -21,11 +21,11 @@ import java.util.UUID;
 public class MusicaDataProvider implements MusicaGateway {
 
     private final MusicaRepository repository;
-    private final String MENSAGEM_ERRO_SALVAR_MUSICA = "Erro ao salvar música";
-    private final String MENSAGEM_ERRO_CONSULTAR_MUSICA_ID = "Erro ao consultar música pelo id";
-    private final String MENSAGEM_ERRO_LISTAR_MUSICA = "Erro ao listar músicas";
-    private final String MENSAGEM_ERRO_DELETAR_MUSICA = "Erro ao deletar música";
-    private final String MENSAGEM_ERRO_CONSULTAR_MUSICA_NOME = "Erro consultar música pelo nome";
+    public final String MENSAGEM_ERRO_SALVAR_MUSICA = "Erro ao salvar música";
+    public final String MENSAGEM_ERRO_CONSULTAR_MUSICA_ID = "Erro ao consultar música pelo id";
+    public final String MENSAGEM_ERRO_LISTAR_MUSICA = "Erro ao listar músicas";
+    public final String MENSAGEM_ERRO_DELETAR_MUSICA = "Erro ao deletar música";
+    public final String MENSAGEM_ERRO_CONSULTAR_MUSICA_NOME = "Erro consultar música pelo nome";
 
     @Override
     public Musica salvar(Musica musica) {

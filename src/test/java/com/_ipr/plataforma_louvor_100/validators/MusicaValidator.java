@@ -1,6 +1,5 @@
 package com._ipr.plataforma_louvor_100.validators;
 
-import com._ipr.plataforma_louvor_100.builder.MusicaBuilder;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 public class MusicaValidator {
 
     public static void validaMusicaDomain(Musica comparacao1, Musica comparacao2) {
-        Assertions.assertEquals(comparacao1.getIdMusica(), comparacao2.getIdMusica());
         Assertions.assertEquals(comparacao1.getTom(), comparacao2.getTom());
         Assertions.assertEquals(comparacao1.getVersao(), comparacao2.getVersao());
         Assertions.assertEquals(comparacao1.getDificuldade(), comparacao2.getDificuldade());

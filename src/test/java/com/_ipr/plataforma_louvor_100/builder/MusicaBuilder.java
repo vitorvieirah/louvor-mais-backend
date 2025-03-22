@@ -4,7 +4,12 @@ import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
+import com._ipr.plataforma_louvor_100.infrastructure.mapper.MusicaMapper;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +51,19 @@ public class MusicaBuilder {
         }
 
         return musicas;
+    }
+
+    public static Page<MusicaEntity> gerarPageMusicaEntity() {
+        Pageable pageable = PageRequest.of(0, 10);
+
+        List<MusicaEntity> list = MusicaMapper.paraEntities(gerarListaMusica());
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), list.size());
+
+        List<MusicaEntity> sublist = list.subList(start, end);
+
+        return new PageImpl<>(sublist, pageable, list.size());
     }
 
     public static MusicaDto gerarMusicaDto() {
