@@ -4,6 +4,9 @@ import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
 import org.junit.jupiter.api.Assertions;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 public class MusicaValidator {
 
@@ -31,5 +34,38 @@ public class MusicaValidator {
         Assertions.assertEquals(comparacao1.dificuldade(), comparacao2.dificuldade());
         Assertions.assertEquals(comparacao1.link(), comparacao2.link());
         Assertions.assertEquals(comparacao1.cifra(), comparacao2.cifra());
+    }
+
+    /*@JsonProperty("id_musica")
+        UUID idMusica,
+
+        @NotBlank(message = "O nome é obrigatório")
+        @JsonProperty("nome")
+        String nome,
+
+        @JsonProperty("tom")
+        TomMusica tom,
+
+        @JsonProperty("versao")
+        String versao,
+
+        @JsonProperty("dificuldade")
+        DificuldadeMusica dificuldade,
+
+        @NotBlank(message = "O link da música é obrigatório")
+        @JsonProperty("link")
+        String link,
+
+        @JsonProperty("cifra")
+        String cifra)
+     */
+
+    public static void validaMusicaController(ResultActions resultado, Musica comparacao) throws Exception {
+        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.nome").value(comparacao.getNome()));
+        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.tom").value(comparacao.getTom()));
+        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.versao").value(comparacao.getVersao()));
+        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.dificuldade").value(comparacao.getDificuldade()));
+        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.link").value(comparacao.getLink()));
+        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.cifra").value(comparacao.getCifra()));
     }
 }

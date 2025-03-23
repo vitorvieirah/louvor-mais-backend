@@ -77,4 +77,14 @@ public class MusicaBuilder {
                 .versao("Versão teste")
                 .build();
     }
+
+    public static String gerarJson() {
+        Musica musica = gerarMusicaDomain();
+        return "{\"nome\": \"" + musica.getNome()
+                + "\", \"tom\":\"" + musica.getTom()
+                + "\", \"versao\":\"" + musica.getVersao()
+                + "\", \"dificuldade\":\"" + musica.getDificuldade()
+                + "\", \"link\":\"" + musica.getLink()
+                + "\", \"cifra\":\"" + musica.getCifra() + "\"}";
+    }
 }
