@@ -47,7 +47,7 @@ public class MusicaController {
     }
 
     @GetMapping
-    public ResponseEntity<ResponseDto<Page<MusicaDto>>> listar(@PageableDefault(size = 5, page = 0, sort = "name") Pageable pageable) {
+    public ResponseEntity<ResponseDto<Page<MusicaDto>>> listar(@PageableDefault Pageable pageable) {
         Page<Musica> musicas = useCase.listar(pageable);
         Page<MusicaDto> resposta = musicas.map(MusicaMapper::paraDto);
         ResponseDto<Page<MusicaDto>> responseDto = new ResponseDto<>(resposta);

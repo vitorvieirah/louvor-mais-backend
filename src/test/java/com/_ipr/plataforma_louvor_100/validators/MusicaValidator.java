@@ -8,6 +8,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 public class MusicaValidator {
 
     public static void validaMusicaDomain(Musica comparacao1, Musica comparacao2) {
@@ -36,36 +38,24 @@ public class MusicaValidator {
         Assertions.assertEquals(comparacao1.cifra(), comparacao2.cifra());
     }
 
-    /*@JsonProperty("id_musica")
-        UUID idMusica,
-
-        @NotBlank(message = "O nome é obrigatório")
-        @JsonProperty("nome")
-        String nome,
-
-        @JsonProperty("tom")
-        TomMusica tom,
-
-        @JsonProperty("versao")
-        String versao,
-
-        @JsonProperty("dificuldade")
-        DificuldadeMusica dificuldade,
-
-        @NotBlank(message = "O link da música é obrigatório")
-        @JsonProperty("link")
-        String link,
-
-        @JsonProperty("cifra")
-        String cifra)
-     */
-
     public static void validaMusicaController(ResultActions resultado, Musica comparacao) throws Exception {
-        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.nome").value(comparacao.getNome()));
-        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.tom").value(comparacao.getTom()));
-        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.versao").value(comparacao.getVersao()));
-        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.dificuldade").value(comparacao.getDificuldade()));
-        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.link").value(comparacao.getLink()));
-        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.cifra").value(comparacao.getCifra()));
+        resultado.andExpect(jsonPath("$.dado.nome").value(comparacao.getNome()));
+        resultado.andExpect(jsonPath("$.dado.tom").value(comparacao.getTom().toString().trim()));
+        resultado.andExpect(jsonPath("$.dado.versao").value(comparacao.getVersao()));
+        resultado.andExpect(jsonPath("$.dado.dificuldade").value(comparacao.getDificuldade().toString().trim()));
+        resultado.andExpect(jsonPath("$.dado.link").value(comparacao.getLink()));
+        resultado.andExpect(jsonPath("$.dado.cifra").value(comparacao.getCifra()));
+    }
+
+    public static void validaMusicasController(ResultActions resultado, int indexProdutoList, MusicaEntity comparacao) throws Exception {
+        String jsonPathBase = String.format("$.dado.content[%d].", indexProdutoList);
+
+        resultado.andExpect(jsonPath(jsonPathBase + "id_musica").value(comparacao.getIdMusica().toString().trim()));
+        resultado.andExpect(jsonPath(jsonPathBase + "nome").value(comparacao.getNome()));
+        resultado.andExpect(jsonPath(jsonPathBase + "tom").value(comparacao.getTom().toString().trim()));
+        resultado.andExpect(jsonPath(jsonPathBase + "versao").value(comparacao.getVersao()));
+        resultado.andExpect(jsonPath(jsonPathBase + "dificuldade").value(comparacao.getDificuldade().toString().trim()));
+        resultado.andExpect(jsonPath(jsonPathBase + "link").value(comparacao.getLink()));
+        resultado.andExpect(jsonPath(jsonPathBase + "cifra").value(comparacao.getCifra()));
     }
 }
