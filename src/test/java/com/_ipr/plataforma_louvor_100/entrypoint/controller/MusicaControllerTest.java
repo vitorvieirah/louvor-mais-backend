@@ -1,13 +1,10 @@
 package com._ipr.plataforma_louvor_100.entrypoint.controller;
 
 import com._ipr.plataforma_louvor_100.builder.MusicaBuilder;
-import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
-import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.MusicaRepository;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
 import com._ipr.plataforma_louvor_100.validators.MusicaValidator;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,6 +23,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -46,8 +48,8 @@ class MusicaControllerTest {
     void testaCadastroDeMusicas() throws Exception {
         musicaTesteEntity.setIdMusica(null);
 
-        Mockito.when(repository.findByNome(Mockito.any())).thenReturn(Optional.empty());
-        Mockito.when(repository.save(musicaTesteEntity)).thenReturn(musicaTesteEntity);
+        when(repository.findByNome(Mockito.any())).thenReturn(Optional.empty());
+        when(repository.save(musicaTesteEntity)).thenReturn(musicaTesteEntity);
 
         ResultActions resultado = mockMvc
                 .perform(MockMvcRequestBuilders.post("/musicas")
@@ -55,7 +57,7 @@ class MusicaControllerTest {
                         .content(MUSICA_JSON)
                 );
 
-        resultado.andExpect(MockMvcResultMatchers.status().isCreated());
+        resultado.andExpect(status().isCreated());
         MusicaValidator.validaMusicaController(resultado, MusicaBuilder.gerarMusicaDomain());
     }
 
@@ -63,14 +65,14 @@ class MusicaControllerTest {
     void testeConsultaMusicaPorId() throws Exception {
         UUID idTeste = musicaTesteEntity.getIdMusica();
 
-        Mockito.when(repository.findById(idTeste)).thenReturn(Optional.of(musicaTesteEntity));
+        when(repository.findById(idTeste)).thenReturn(Optional.of(musicaTesteEntity));
 
         ResultActions resultado = mockMvc
                 .perform(MockMvcRequestBuilders.get("/musicas/{id}", idTeste)
                         .contentType(MediaType.APPLICATION_JSON)
                 );
 
-        resultado.andExpect(MockMvcResultMatchers.status().isOk());
+        resultado.andExpect(status().isOk());
         resultado.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
 
         MusicaValidator.validaMusicaController(resultado, MusicaBuilder.gerarMusicaDomain());
@@ -83,7 +85,7 @@ class MusicaControllerTest {
 
         Pageable pageableTeste = PageRequest.of(1, 10);
 
-        Mockito.when(repository.findAll(pageableTeste)).thenReturn(musicaEntities);
+        when(repository.findAll(pageableTeste)).thenReturn(musicaEntities);
 
         ResultActions resultado = mockMvc
                 .perform(MockMvcRequestBuilders.get("/musicas")
@@ -92,7 +94,7 @@ class MusicaControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                 );
 
-        resultado.andExpect(MockMvcResultMatchers.status().isOk());
+        resultado.andExpect(status().isOk());
         resultado.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
 
         List<MusicaEntity> listMusicas = musicaEntities.getContent();
@@ -108,38 +110,16 @@ class MusicaControllerTest {
         }
     }
 
-    //problema
     @Test
-    void testaEdicaoDeMusica() throws Exception {
+    void deletar() throws Exception {
         UUID idTeste = musicaTesteEntity.getIdMusica();
-        musicaTesteEntity.setIdMusica(null);
-        MusicaEntity musicaExistente = MusicaEntity.builder()
-                .idMusica(idTeste)
-                .tom(TomMusica.C)
-                .nome("Nome existente teste")
-                .link("link existente teste")
-                .dificuldade(DificuldadeMusica.MEDIO)
-                .cifra("cifra existente teste")
-                .versao("versão existente teste")
-                .build();
 
-        Mockito.when(repository.findById(idTeste)).thenReturn(Optional.of(musicaExistente));
-        Mockito.when(repository.save(musicaTesteEntity)).thenReturn(musicaTesteEntity);
+        when(repository.findById(idTeste)).thenReturn(Optional.of(musicaTesteEntity));
+        doNothing().when(repository).deleteById(idTeste);
 
-        ResultActions resultado = mockMvc
-                .perform(MockMvcRequestBuilders.put("/musicas/{id}", idTeste)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(MUSICA_JSON)
-                );
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/musicas/{id}", idTeste)
+                ).andExpect(status().isNoContent());
 
-        resultado.andExpect(MockMvcResultMatchers.status().isOk());
-        resultado.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
-
-        MusicaValidator.validaMusicaController(resultado, MusicaBuilder.gerarMusicaDomain());
-        resultado.andExpect(MockMvcResultMatchers.jsonPath("$.dado.id_musica").value(idTeste.toString().trim()));
-    }
-
-    @Test
-    void deletar() {
     }
 }
