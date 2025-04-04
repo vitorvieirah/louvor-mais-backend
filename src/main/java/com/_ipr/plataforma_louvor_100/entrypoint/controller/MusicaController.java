@@ -32,7 +32,7 @@ public class MusicaController {
         return ResponseEntity
                 .created(UriComponentsBuilder
                         .newInstance()
-                        .path("/integrantes/{id}")
+                        .path("/musicas/{id}")
                         .buildAndExpand(resposta.idMusica())
                         .toUri())
                 .body(responseDto);
