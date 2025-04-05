@@ -4,6 +4,8 @@ import com._ipr.plataforma_louvor_100.domain.FuncaoIntegrante;
 import com._ipr.plataforma_louvor_100.domain.Integrante;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.IntegranteEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class IntegranteBuilder {
@@ -21,5 +23,25 @@ public class IntegranteBuilder {
                 .nome("Integrante teste")
                 .funcao(FuncaoIntegrante.BAIXO)
                 .build();
+    }
+
+    public static List<Integrante> gerarListaIntegranteDomain() {
+        List<Integrante> integranteList = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            integranteList.add(gerarIntegranteDomain());
+        }
+
+        return integranteList;
+    }
+
+    public static List<IntegranteEntity> gerarListaIntegranteEntity() {
+        List<IntegranteEntity> integranteList = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            integranteList.add(gerarIntegranteEntity());
+        }
+
+        return integranteList;
     }
 }

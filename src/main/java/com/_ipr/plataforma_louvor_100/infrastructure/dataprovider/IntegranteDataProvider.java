@@ -19,9 +19,9 @@ import java.util.UUID;
 public class IntegranteDataProvider implements IntegranteGateway {
 
     private final IntegranteRepository repository;
-    private final String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_ID = "Erro ao consultar integrante pelo id.";
-    private final String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_NOME = "Erro ao consultar integrante pelo nome.";
-    private final String MENSAGEM_ERRO_SALVAR_INTEGRANTE = "Erro ao salvar integrante.";
+    public final static String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_ID = "Erro ao consultar integrante pelo id.";
+    public final static String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_NOME = "Erro ao consultar integrante pelo nome.";
+    public final static String MENSAGEM_ERRO_SALVAR_INTEGRANTE = "Erro ao salvar integrante.";
 
     @Override
     public Optional<Integrante> consultarPorId(UUID idIntegrante) {
