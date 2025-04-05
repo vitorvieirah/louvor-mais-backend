@@ -30,7 +30,7 @@ public class MusicaEntity {
 
     private String versao;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private DificuldadeMusica dificuldade;
 
     private String link;

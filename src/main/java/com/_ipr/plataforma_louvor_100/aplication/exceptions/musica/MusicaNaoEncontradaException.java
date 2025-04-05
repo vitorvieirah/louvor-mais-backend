@@ -1,4 +1,4 @@
-package com._ipr.plataforma_louvor_100.aplication.exceptions;
+package com._ipr.plataforma_louvor_100.aplication.exceptions.musica;
 
 public class MusicaNaoEncontradaException extends RuntimeException {
     public MusicaNaoEncontradaException() {

@@ -22,6 +22,6 @@ public class IntegranteEntity {
 
     private String nome;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private FuncaoIntegrante funcao;
 }

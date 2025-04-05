@@ -8,7 +8,7 @@ import lombok.Builder;
 import java.util.UUID;
 
 @Builder
-public record IntegranteDto (
+public record IntegranteDto(
         @JsonProperty("id_integrante")
         UUID idIntegrante,
 
@@ -17,6 +17,6 @@ public record IntegranteDto (
         String nome,
 
         @NotBlank
-        @JsonProperty("nome")
+        @JsonProperty("funcao")
         FuncaoIntegrante funcao
-){}
+) {}

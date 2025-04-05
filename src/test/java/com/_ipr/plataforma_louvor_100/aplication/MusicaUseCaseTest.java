@@ -1,13 +1,12 @@
 package com._ipr.plataforma_louvor_100.aplication;
 
-import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaJaCadastradaException;
-import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaNaoEncontradaException;
+import com._ipr.plataforma_louvor_100.aplication.exceptions.musica.MusicaJaCadastradaException;
+import com._ipr.plataforma_louvor_100.aplication.exceptions.musica.MusicaNaoEncontradaException;
 import com._ipr.plataforma_louvor_100.aplication.gateways.MusicaGateway;
 import com._ipr.plataforma_louvor_100.builder.MusicaBuilder;
 import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
-import com._ipr.plataforma_louvor_100.infrastructure.dataprovider.MusicaDataProvider;
 import com._ipr.plataforma_louvor_100.infrastructure.mapper.MusicaMapper;
 import com._ipr.plataforma_louvor_100.validators.MusicaValidator;
 import org.junit.jupiter.api.Assertions;
@@ -19,8 +18,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class MusicaUseCaseTest {

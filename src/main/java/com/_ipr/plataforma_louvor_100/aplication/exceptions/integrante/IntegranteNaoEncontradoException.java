@@ -1,4 +1,4 @@
-package com._ipr.plataforma_louvor_100.aplication.exceptions;
+package com._ipr.plataforma_louvor_100.aplication.exceptions.integrante;
 
 public class IntegranteNaoEncontradoException extends RuntimeException {
 

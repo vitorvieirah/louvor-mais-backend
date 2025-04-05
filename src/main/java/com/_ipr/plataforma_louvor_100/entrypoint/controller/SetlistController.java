@@ -49,7 +49,7 @@ public class SetlistController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable UUID idSetlist) {
+    public ResponseEntity<Void> deletar(@PathVariable("id") UUID idSetlist) {
         useCase.deletar(idSetlist);
         return ResponseEntity.noContent().build();
     }

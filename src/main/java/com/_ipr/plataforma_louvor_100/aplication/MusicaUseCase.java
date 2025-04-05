@@ -1,12 +1,10 @@
 package com._ipr.plataforma_louvor_100.aplication;
 
-import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaJaCadastradaException;
-import com._ipr.plataforma_louvor_100.aplication.exceptions.MusicaNaoEncontradaException;
+import com._ipr.plataforma_louvor_100.aplication.exceptions.musica.MusicaJaCadastradaException;
+import com._ipr.plataforma_louvor_100.aplication.exceptions.musica.MusicaNaoEncontradaException;
 import com._ipr.plataforma_louvor_100.aplication.gateways.MusicaGateway;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
