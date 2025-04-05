@@ -1,5 +1,6 @@
 package com._ipr.plataforma_louvor_100.aplication;
 
+import com._ipr.plataforma_louvor_100.aplication.exceptions.IntegranteJaCadastradoException;
 import com._ipr.plataforma_louvor_100.aplication.exceptions.IntegranteNaoEncontradoException;
 import com._ipr.plataforma_louvor_100.aplication.gateways.IntegranteGateway;
 import com._ipr.plataforma_louvor_100.domain.Integrante;
@@ -24,4 +25,15 @@ public class IntegranteUseCase {
 
         return integrante.get();
     }
+
+    public Integrante cadastrar(Integrante novoIntegrante) {
+        Optional<Integrante> integranteOptional = gateway.consultarPorNome(novoIntegrante.getNome());
+
+        integranteOptional.ifPresent(integrante -> {
+            throw new IntegranteJaCadastradoException();
+        });
+
+        return gateway.salvar(novoIntegrante);
+    }
+
 }

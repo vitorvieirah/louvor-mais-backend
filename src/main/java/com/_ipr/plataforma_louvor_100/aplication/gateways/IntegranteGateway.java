@@ -7,4 +7,8 @@ import java.util.UUID;
 
 public interface IntegranteGateway {
     Optional<Integrante> consultarPorId(UUID idIntegrante);
+
+    Optional<Integrante> consultarPorNome(String nome);
+
+    Integrante salvar(Integrante novoIntegrante);
 }

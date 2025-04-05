@@ -22,9 +22,9 @@ public record SetlistDto (
 
         @NotBlank(message = "É obrigatório ter pelomenos uma música.")
         @JsonProperty("musicas")
-        List<Musica>musicas,
+        List<MusicaDto>musicas,
 
         @JsonProperty("folgas")
-        List<Integrante> folgas
+        List<IntegranteDto> folgas
 
 ){}

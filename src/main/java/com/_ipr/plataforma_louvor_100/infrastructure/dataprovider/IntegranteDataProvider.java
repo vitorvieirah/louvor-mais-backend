@@ -20,6 +20,8 @@ public class IntegranteDataProvider implements IntegranteGateway {
 
     private final IntegranteRepository repository;
     private final String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_ID = "Erro ao consultar integrante pelo id.";
+    private final String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_NOME = "Erro ao consultar integrante pelo nome.";
+    private final String MENSAGEM_ERRO_SALVAR_INTEGRANTE = "Erro ao salvar integrante.";
 
     @Override
     public Optional<Integrante> consultarPorId(UUID idIntegrante) {
@@ -33,5 +35,33 @@ public class IntegranteDataProvider implements IntegranteGateway {
         }
 
         return integranteEntity.map(IntegranteMapper::paraDomain);
+    }
+
+    @Override
+    public Optional<Integrante> consultarPorNome(String nome) {
+        Optional<IntegranteEntity> integranteEntity;
+
+        try {
+            integranteEntity = repository.findByNome(nome);
+        } catch (Exception ex) {
+            log.error(MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_NOME, ex);
+            throw new DataProviderException(MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_NOME, ex.getCause());
+        }
+
+        return integranteEntity.map(IntegranteMapper::paraDomain);
+    }
+
+    @Override
+    public Integrante salvar(Integrante novoIntegrante) {
+        IntegranteEntity integranteEntity = IntegranteMapper.paraEntity(novoIntegrante);
+
+        try {
+            integranteEntity = repository.save(integranteEntity);
+        } catch (Exception ex) {
+            log.error(MENSAGEM_ERRO_SALVAR_INTEGRANTE, ex);
+            throw new DataProviderException(MENSAGEM_ERRO_SALVAR_INTEGRANTE, ex.getCause());
+        }
+
+        return IntegranteMapper.paraDomain(integranteEntity);
     }
 }
