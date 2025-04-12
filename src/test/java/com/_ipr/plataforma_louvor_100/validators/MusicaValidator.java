@@ -38,6 +38,24 @@ public class MusicaValidator {
         Assertions.assertEquals(comparacao1.cifra(), comparacao2.cifra());
     }
 
+    public static void validaMusicaDomainMapper(Musica comparacao1, MusicaEntity comparacao2) {
+        Assertions.assertEquals(comparacao1.getIdMusica(), comparacao2.getIdMusica());
+        Assertions.assertEquals(comparacao1.getTom(), comparacao2.getTom());
+        Assertions.assertEquals(comparacao1.getVersao(), comparacao2.getVersao());
+        Assertions.assertEquals(comparacao1.getDificuldade(), comparacao2.getDificuldade());
+        Assertions.assertEquals(comparacao1.getLink(), comparacao2.getLink());
+        Assertions.assertEquals(comparacao1.getCifra(), comparacao2.getCifra());
+    }
+
+    public static void validaMusicaEntityMapper(MusicaEntity comparacao1, Musica comparacao2) {
+        Assertions.assertEquals(comparacao1.getIdMusica(), comparacao2.getIdMusica());
+        Assertions.assertEquals(comparacao1.getTom(), comparacao2.getTom());
+        Assertions.assertEquals(comparacao1.getVersao(), comparacao2.getVersao());
+        Assertions.assertEquals(comparacao1.getDificuldade(), comparacao2.getDificuldade());
+        Assertions.assertEquals(comparacao1.getLink(), comparacao2.getLink());
+        Assertions.assertEquals(comparacao1.getCifra(), comparacao2.getCifra());
+    }
+
     public static void validaMusicaController(ResultActions resultado, Musica comparacao) throws Exception {
         resultado.andExpect(jsonPath("$.dado.nome").value(comparacao.getNome()));
         resultado.andExpect(jsonPath("$.dado.tom").value(comparacao.getTom().toString().trim()));

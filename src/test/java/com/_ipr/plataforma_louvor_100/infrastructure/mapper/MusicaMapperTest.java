@@ -14,38 +14,45 @@ public class MusicaMapperTest {
 
     private final Musica musicaTesteDomain = MusicaBuilder.gerarMusicaDomain();
     private final MusicaEntity musicaTesteEntity = MusicaBuilder.gerarMusicaEntity();
-    private final List<Musica> musicas = MusicaBuilder.gerarListaMusica();
+    private final List<Musica> musicaDomainList = MusicaBuilder.gerarListaMusicaDomain();
+    private final List<MusicaEntity> musicaEntityList = MusicaBuilder.gerarListaMusicaEntity();
 
     @Test
     void coverteDomainParaEntity() {
         MusicaEntity resultado = MusicaMapper.paraEntity(musicaTesteDomain);
-        MusicaValidator.validaMusicaEntity(resultado, musicaTesteEntity);
+        MusicaValidator.validaMusicaEntityMapper(resultado, musicaTesteDomain);
         Assertions.assertEquals(resultado.getIdMusica(), musicaTesteDomain.getIdMusica());
     }
 
     @Test
     void converteEntityParaDomain() {
         Musica resultado = MusicaMapper.paraDomain(musicaTesteEntity);
-        MusicaValidator.validaMusicaDomain(resultado, musicaTesteDomain);
+        MusicaValidator.validaMusicaDomainMapper(resultado, musicaTesteEntity);
         Assertions.assertEquals(resultado.getIdMusica(), musicaTesteEntity.getIdMusica());
     }
 
     @Test
     void converListaDeEntitiesParaListaDeDomains() {
-        List<Musica> resultado = MusicaMapper.paraDomains(musicas.stream().map(MusicaMapper::paraEntity).toList());
-        resultado.forEach(musica -> {
-            MusicaValidator.validaMusicaDomain(musica, musicaTesteDomain);
-            Assertions.assertEquals(musica.getIdMusica(), musicaTesteDomain.getIdMusica());
-        });
+        List<Musica> resultado = MusicaMapper.paraDomains(musicaEntityList);
+
+        for (int i = 0; i < resultado.size(); i++) {
+            MusicaValidator.validaMusicaDomainMapper(resultado.get(i), musicaEntityList.get(i));
+            Assertions.assertEquals(resultado.get(i).getIdMusica().toString(), musicaEntityList.get(i).getIdMusica().toString());
+        }
+
+        Assertions.assertEquals(resultado.size(), musicaEntityList.size());
     }
 
     @Test
     void converterListaDeDomainsParaListaDeEntities() {
-        List<MusicaEntity> resultado = MusicaMapper.paraEntities(musicas);
-        resultado.forEach(musica -> {
-            MusicaValidator.validaMusicaEntity(musica, musicaTesteEntity);
-            Assertions.assertEquals(musica.getIdMusica(), musicaTesteEntity.getIdMusica());
-        });
+        List<MusicaEntity> resultado = MusicaMapper.paraEntities(musicaDomainList);
+
+        for (int i = 0; i < resultado.size(); i++) {
+            MusicaValidator.validaMusicaEntityMapper(resultado.get(i), musicaDomainList.get(i));
+            Assertions.assertEquals(resultado.get(i).getIdMusica().toString(), musicaDomainList.get(i).getIdMusica().toString());
+        }
+
+        Assertions.assertEquals(resultado.size(), musicaDomainList.size());
     }
 
 }

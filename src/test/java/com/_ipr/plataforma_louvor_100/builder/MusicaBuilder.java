@@ -43,7 +43,7 @@ public class MusicaBuilder {
 
     }
 
-    public static List<Musica> gerarListaMusica() {
+    public static List<Musica> gerarListaMusicaDomain() {
         List<Musica> musicas = new ArrayList<>();
 
         for (int i = 0; i < 2; i++) {
@@ -53,10 +53,20 @@ public class MusicaBuilder {
         return musicas;
     }
 
+    public static List<MusicaEntity> gerarListaMusicaEntity() {
+        List<MusicaEntity> musicas = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            musicas.add(gerarMusicaEntity());
+        }
+
+        return musicas;
+    }
+
     public static Page<MusicaEntity> gerarPageMusicaEntity() {
         Pageable pageable = PageRequest.of(0, 10);
 
-        List<MusicaEntity> list = MusicaMapper.paraEntities(gerarListaMusica());
+        List<MusicaEntity> list = MusicaMapper.paraEntities(gerarListaMusicaDomain());
 
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), list.size());
