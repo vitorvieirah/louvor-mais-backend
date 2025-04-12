@@ -2,6 +2,8 @@ package com._ipr.plataforma_louvor_100.builder;
 
 import com._ipr.plataforma_louvor_100.domain.FuncaoIntegrante;
 import com._ipr.plataforma_louvor_100.domain.Integrante;
+import com._ipr.plataforma_louvor_100.domain.musica.Musica;
+import com._ipr.plataforma_louvor_100.entrypoint.dto.IntegranteDto;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.IntegranteEntity;
 
 import java.util.ArrayList;
@@ -43,5 +45,20 @@ public class IntegranteBuilder {
         }
 
         return integranteList;
+    }
+
+    public static IntegranteDto gerarIntegranteDto() {
+        return IntegranteDto.builder()
+                .idIntegrante(UUID.fromString("ebfd9cb3-b012-4aea-9545-94bfc6236fbc"))
+                .nome("Integrante teste")
+                .funcao(FuncaoIntegrante.BAIXO)
+                .build();
+    }
+
+    public static String gerarJson() {
+        Integrante integrante = gerarIntegranteDomain();
+        return "{\"nome\": \"" + integrante.getNome()
+                + "\", \"funcao\":\"" + integrante.getFuncao().getDescricao()
+                + "\"}";
     }
 }
