@@ -4,6 +4,7 @@ import com._ipr.plataforma_louvor_100.builder.IntegranteBuilder;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.IntegranteRepository;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.IntegranteEntity;
 import com._ipr.plataforma_louvor_100.validators.IntegranteValidator;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ class IntegranteControllerTest {
     void testeCadastrar() throws Exception {
         integranteTesteEntity.setIdIntegrante(null);
 
-        Mockito.when(repository.findByNome(integranteTesteEntity.getNome())).thenReturn(Optional.of(integranteTesteEntity));
+        Mockito.when(repository.findByNome(integranteTesteEntity.getNome())).thenReturn(Optional.empty());
         Mockito.when(repository.save(integranteTesteEntity)).thenReturn(integranteTesteEntity);
 
         ResultActions resultado = mockMvc
