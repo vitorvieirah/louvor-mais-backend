@@ -21,10 +21,10 @@ import java.util.UUID;
 public class SetlistDataProvider implements SetlistGateway {
 
     private final SetlistRepository repository;
-    private final String MENSAGEM_ERRO_SALVAR_SETLIST = "Erro ao salvar setlist.";
-    private final String MENSAGEM_ERRO_LISTAR_SETLIST = "Erro ao listar setlist.";
-    private final String MENSAGEM_ERRO_DELETAR_SETLIST = "Erro ao deletar setlist.";
-    private final String MENSAGEM_ERRO_CONSULTAR_SETLIST_POR_ID = "Erro ao consultar setlist pelo id.";
+    public static final String MENSAGEM_ERRO_SALVAR_SETLIST = "Erro ao salvar setlist.";
+    public static final String MENSAGEM_ERRO_LISTAR_SETLIST = "Erro ao listar setlist.";
+    public static final String MENSAGEM_ERRO_DELETAR_SETLIST = "Erro ao deletar setlist.";
+    public static final String MENSAGEM_ERRO_CONSULTAR_SETLIST_POR_ID = "Erro ao consultar setlist pelo id.";
 
     @Override
     public Setlist salvar(Setlist setlist) {
