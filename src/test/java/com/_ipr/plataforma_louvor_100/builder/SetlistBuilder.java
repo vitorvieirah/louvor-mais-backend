@@ -3,7 +3,9 @@ package com._ipr.plataforma_louvor_100.builder;
 import com._ipr.plataforma_louvor_100.domain.Integrante;
 import com._ipr.plataforma_louvor_100.domain.Setlist;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
-import com._ipr.plataforma_louvor_100.infrastructure.mapper.MusicaMapper;
+import com._ipr.plataforma_louvor_100.entrypoint.dto.IntegranteDto;
+import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
+import com._ipr.plataforma_louvor_100.entrypoint.dto.SetlistDto;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.IntegranteEntity;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.SetlistEntity;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
@@ -45,7 +47,7 @@ public class SetlistBuilder {
     }
 
     public static List<SetlistEntity> gerarListaSetlistEntity() {
-        List<SetlistEntity> setlistEntities =  new ArrayList<>();
+        List<SetlistEntity> setlistEntities = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
             setlistEntities.add(gerarSetlistEntity());
@@ -65,5 +67,37 @@ public class SetlistBuilder {
         List<SetlistEntity> sublist = list.subList(start, end);
 
         return new PageImpl<>(sublist, pageable, list.size());
+    }
+
+    public static SetlistDto gerarSetlistDto() {
+        List<MusicaDto> musicasDto = MusicaBuilder.gerarLIstaMusicaDto();
+        List<IntegranteDto> integranteDto = IntegranteBuilder.gerarListaIntegranteDto();
+
+        return SetlistDto.builder()
+                .idSetlist(UUID.fromString("87c3f0d7-c4c5-4b47-8fc9-9cac97a5eff4"))
+                .data(LocalDate.now())
+                .musicas(musicasDto)
+                .folgas(integranteDto)
+                .build();
+
+    }
+
+    public static String gerarJson() {
+        MusicaDto musica = MusicaBuilder.gerarMusicaDto();
+        IntegranteDto integrante = IntegranteBuilder.gerarIntegranteDto();
+
+        return "{"
+                + "\"data\": \"" + LocalDate.now() + "\","
+                + "\"musicas\": ["
+                + "    {"
+                + "        \"id_musica\": \"" + musica.idMusica() + "\""
+                + "    }"
+                + "],"
+                + "\"folgas\": ["
+                + "    {"
+                + "        \"id_integrante\": \"" + integrante.idIntegrante() + "\""
+                + "    }"
+                + "]"
+                + "}";
     }
 }

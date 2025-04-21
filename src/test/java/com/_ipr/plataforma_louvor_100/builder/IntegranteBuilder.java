@@ -61,4 +61,14 @@ public class IntegranteBuilder {
                 + "\", \"funcao\":\"" + integrante.getFuncao().getDescricao()
                 + "\"}";
     }
+
+    public static List<IntegranteDto> gerarListaIntegranteDto() {
+        List<IntegranteDto> integranteList = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            integranteList.add(gerarIntegranteDto());
+        }
+
+        return integranteList;
+    }
 }

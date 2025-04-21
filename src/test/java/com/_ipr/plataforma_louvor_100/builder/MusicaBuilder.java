@@ -97,4 +97,14 @@ public class MusicaBuilder {
                 + "\", \"link\":\"" + musica.getLink()
                 + "\", \"cifra\":\"" + musica.getCifra() + "\"}";
     }
+
+    public static List<MusicaDto> gerarLIstaMusicaDto() {
+        List<MusicaDto> musicas = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            musicas.add(gerarMusicaDto());
+        }
+
+        return musicas;
+    }
 }
