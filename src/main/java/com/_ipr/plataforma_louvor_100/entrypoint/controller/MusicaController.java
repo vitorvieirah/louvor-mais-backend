@@ -3,6 +3,7 @@ package com._ipr.plataforma_louvor_100.entrypoint.controller;
 import com._ipr.plataforma_louvor_100.aplication.MusicaUseCase;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
+import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaResponseDto;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.ResponseDto;
 import com._ipr.plataforma_louvor_100.entrypoint.mapper.MusicaMapper;
 import jakarta.validation.Valid;
@@ -24,11 +25,11 @@ public class MusicaController {
     private final MusicaUseCase useCase;
 
     @PostMapping
-    public ResponseEntity<ResponseDto<MusicaDto>> cadastrar(@Valid @RequestBody MusicaDto novaMusica) {
+    public ResponseEntity<ResponseDto<MusicaResponseDto>> cadastrar(@Valid @RequestBody MusicaDto novaMusica) {
         Musica musica = MusicaMapper.paraDomain(novaMusica);
         musica = useCase.cadastrar(musica);
-        MusicaDto resposta = MusicaMapper.paraDto(musica);
-        ResponseDto<MusicaDto> responseDto = new ResponseDto<>(resposta);
+        MusicaResponseDto resposta = MusicaMapper.paraDto(musica);
+        ResponseDto<MusicaResponseDto> responseDto = new ResponseDto<>(resposta);
         return ResponseEntity
                 .created(UriComponentsBuilder
                         .newInstance()
@@ -39,27 +40,27 @@ public class MusicaController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ResponseDto<MusicaDto>> consultarPorId(@PathVariable("id") UUID musicaId) {
+    public ResponseEntity<ResponseDto<MusicaResponseDto>> consultarPorId(@PathVariable("id") UUID musicaId) {
         Musica musica = useCase.consultarPorId(musicaId);
-        MusicaDto resposta = MusicaMapper.paraDto(musica);
-        ResponseDto<MusicaDto> response = new ResponseDto<>(resposta);
+        MusicaResponseDto resposta = MusicaMapper.paraDto(musica);
+        ResponseDto<MusicaResponseDto> response = new ResponseDto<>(resposta);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
-    public ResponseEntity<ResponseDto<Page<MusicaDto>>> listar(@PageableDefault Pageable pageable) {
-        Page<Musica> musicas = useCase.listar(pageable);
-        Page<MusicaDto> resposta = musicas.map(MusicaMapper::paraDto);
-        ResponseDto<Page<MusicaDto>> responseDto = new ResponseDto<>(resposta);
-        return ResponseEntity.ok(responseDto);
-    }
+        @GetMapping
+        public ResponseEntity<ResponseDto<Page<MusicaResponseDto>>> listar(@PageableDefault Pageable pageable) {
+            Page<Musica> musicas = useCase.listar(pageable);
+            Page<MusicaResponseDto> resposta = musicas.map(MusicaMapper::paraDto);
+            ResponseDto<Page<MusicaResponseDto>> responseDto = new ResponseDto<>(resposta);
+            return ResponseEntity.ok(responseDto);
+        }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ResponseDto<MusicaDto>> editar(@RequestBody MusicaDto novosDados, @PathVariable("id") UUID idMusica) {
+    public ResponseEntity<ResponseDto<MusicaResponseDto>> editar(@RequestBody MusicaDto novosDados, @PathVariable("id") UUID idMusica) {
         Musica musica = MusicaMapper.paraDomain(novosDados);
         musica = useCase.editar(musica, idMusica);
-        MusicaDto resposta = MusicaMapper.paraDto(musica);
-        ResponseDto<MusicaDto> responseDto = new ResponseDto<>(resposta);
+        MusicaResponseDto resposta = MusicaMapper.paraDto(musica);
+        ResponseDto<MusicaResponseDto> responseDto = new ResponseDto<>(resposta);
         return ResponseEntity.ok(responseDto);
     }
 

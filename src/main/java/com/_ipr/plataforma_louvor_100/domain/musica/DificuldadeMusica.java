@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 public enum DificuldadeMusica {
     FACIL(0, "Fácil"),
-    MEDIO(0, "Fácil"),
-    DIFICIL(0, "Fácil");
+    MEDIA(1, "Média"),
+    DIFICIL(2, "Dificil");
 
     private final Integer codigo;
     private final String descricao;

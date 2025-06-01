@@ -25,7 +25,7 @@ public class MusicaEntity {
 
     private String nome;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TomMusica tom;
 
     private String versao;
