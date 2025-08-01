@@ -2,7 +2,6 @@ package com._ipr.plataforma_louvor_100.entrypoint.controller;
 
 import com._ipr.plataforma_louvor_100.aplication.SetlistUseCase;
 import com._ipr.plataforma_louvor_100.domain.Setlist;
-import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.ResponseDto;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.SetlistDto;
 import com._ipr.plataforma_louvor_100.entrypoint.mapper.SetlistMapper;

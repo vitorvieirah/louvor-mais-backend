@@ -21,11 +21,17 @@ public record MusicaDto(
         @JsonProperty("tom")
         TomMusica tom,
 
+        @JsonProperty("decricao_tom")
+        String descricaoTom,
+
         @JsonProperty("versao")
         String versao,
 
         @JsonProperty("dificuldade")
         DificuldadeMusica dificuldade,
+
+        @JsonProperty("descricao_dificuldade")
+        String descricaoDificuldade,
 
         @NotBlank(message = "O link da música é obrigatório")
         @JsonProperty("link")

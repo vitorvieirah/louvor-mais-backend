@@ -18,6 +18,7 @@ public class IntegranteMapper {
                 .idIntegrante(domain.getIdIntegrante())
                 .nome(domain.getNome())
                 .funcao(domain.getFuncao())
+                .descricaoFuncao(domain.getFuncao().getDescricao())
                 .build();
     }
 }

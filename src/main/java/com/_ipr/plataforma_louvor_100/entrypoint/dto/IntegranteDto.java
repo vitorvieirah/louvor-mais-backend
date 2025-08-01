@@ -18,5 +18,8 @@ public record IntegranteDto(
 
         @NotBlank
         @JsonProperty("funcao")
-        FuncaoIntegrante funcao
+        FuncaoIntegrante funcao,
+
+        @JsonProperty("descricao_funcao")
+        String descricaoFuncao
 ) {}
