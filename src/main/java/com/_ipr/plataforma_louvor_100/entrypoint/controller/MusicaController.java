@@ -46,13 +46,13 @@ public class MusicaController {
         return ResponseEntity.ok(response);
     }
 
-        @GetMapping
-        public ResponseEntity<ResponseDto<Page<MusicaDto>>> listar(@PageableDefault Pageable pageable) {
-            Page<Musica> musicas = useCase.listar(pageable);
-            Page<MusicaDto> resposta = musicas.map(MusicaMapper::paraDto);
-            ResponseDto<Page<MusicaDto>> responseDto = new ResponseDto<>(resposta);
-            return ResponseEntity.ok(responseDto);
-        }
+    @GetMapping
+    public ResponseEntity<ResponseDto<Page<MusicaDto>>> listar(@PageableDefault Pageable pageable) {
+        Page<Musica> musicas = useCase.listar(pageable);
+        Page<MusicaDto> resposta = musicas.map(MusicaMapper::paraDto);
+        ResponseDto<Page<MusicaDto>> responseDto = new ResponseDto<>(resposta);
+        return ResponseEntity.ok(responseDto);
+    }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<ResponseDto<MusicaDto>> editar(@RequestBody MusicaDto novosDados, @PathVariable("id") UUID idMusica) {

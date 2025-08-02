@@ -8,8 +8,11 @@ import com._ipr.plataforma_louvor_100.infrastructure.repositories.IntegranteRepo
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.IntegranteEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,6 +25,7 @@ public class IntegranteDataProvider implements IntegranteGateway {
     public final static String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_ID = "Erro ao consultar integrante pelo id.";
     public final static String MENSAGEM_ERRO_CONSULTAR_INTEGRANTE_POR_NOME = "Erro ao consultar integrante pelo nome.";
     public final static String MENSAGEM_ERRO_SALVAR_INTEGRANTE = "Erro ao salvar integrante.";
+    private static final String MENSAGEM_ERRO_LISTAR = "Erro ao listar.";
 
     @Override
     public Optional<Integrante> consultarPorId(UUID idIntegrante) {
@@ -63,5 +67,19 @@ public class IntegranteDataProvider implements IntegranteGateway {
         }
 
         return IntegranteMapper.paraDomain(integranteEntity);
+    }
+
+    @Override
+    public Page<Integrante> listar(Pageable pageable) {
+        Page<IntegranteEntity> integranteEntities;
+
+        try {
+            integranteEntities = repository.findAll(pageable);
+        } catch (Exception ex) {
+            log.error(MENSAGEM_ERRO_LISTAR, ex);
+            throw new DataProviderException(MENSAGEM_ERRO_LISTAR, ex.getCause());
+        }
+
+        return integranteEntities.map(IntegranteMapper::paraDomain);
     }
 }

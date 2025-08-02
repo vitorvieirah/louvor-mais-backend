@@ -5,6 +5,8 @@ import com._ipr.plataforma_louvor_100.aplication.exceptions.integrante.Integrant
 import com._ipr.plataforma_louvor_100.aplication.gateways.IntegranteGateway;
 import com._ipr.plataforma_louvor_100.domain.Integrante;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -36,4 +38,7 @@ public class IntegranteUseCase {
         return gateway.salvar(novoIntegrante);
     }
 
+    public Page<Integrante> listar(Pageable pageable) {
+        return gateway.listar(pageable);
+    }
 }

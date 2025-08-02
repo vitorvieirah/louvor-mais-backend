@@ -5,12 +5,13 @@ import com._ipr.plataforma_louvor_100.domain.Integrante;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.IntegranteDto;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.ResponseDto;
 import com._ipr.plataforma_louvor_100.entrypoint.mapper.IntegranteMapper;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -34,5 +35,13 @@ public class IntegranteController {
                         .buildAndExpand(resposta.idIntegrante())
                         .toUri())
                 .body(responseDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<ResponseDto<Page<IntegranteDto>>> listar(@PageableDefault Pageable pageable) {
+        Page<Integrante> integrantes = useCase.listar(pageable);
+        Page<IntegranteDto> resposta = integrantes.map(IntegranteMapper::paraDto);
+        ResponseDto<Page<IntegranteDto>> responseDto = new ResponseDto<>(resposta);
+        return ResponseEntity.ok(responseDto);
     }
 }
