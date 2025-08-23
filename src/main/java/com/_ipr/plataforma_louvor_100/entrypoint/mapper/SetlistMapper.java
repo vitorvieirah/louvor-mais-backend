@@ -19,6 +19,11 @@ public class SetlistMapper {
                         .map(IntegranteMapper::paraDomain)
                         .toList()
                 )
+                .escalados(dto.escalados()
+                        .stream()
+                        .map(IntegranteMapper::paraDomain)
+                        .toList()
+                )
                 .build();
     }
 
@@ -32,6 +37,11 @@ public class SetlistMapper {
                         .toList()
                 )
                 .folgas(domain.getFolgas()
+                        .stream()
+                        .map(IntegranteMapper::paraDto)
+                        .toList()
+                )
+                .escalados(domain.getEscalados()
                         .stream()
                         .map(IntegranteMapper::paraDto)
                         .toList()

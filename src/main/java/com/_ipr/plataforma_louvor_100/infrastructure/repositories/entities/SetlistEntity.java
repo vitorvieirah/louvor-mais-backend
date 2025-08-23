@@ -1,5 +1,6 @@
 package com._ipr.plataforma_louvor_100.infrastructure.repositories.entities;
 
+import com._ipr.plataforma_louvor_100.domain.Integrante;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -40,4 +41,12 @@ public class SetlistEntity {
             inverseJoinColumns = @JoinColumn(name = "id_integrante", nullable = false)
     )
     private List<IntegranteEntity> folgas;
+
+    @ManyToMany
+    @JoinTable(
+            name = "escalados_setlist",
+            joinColumns = @JoinColumn(name = "id_setlist", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "id_integrante", nullable = false)
+    )
+    private List<IntegranteEntity> escalados;
 }

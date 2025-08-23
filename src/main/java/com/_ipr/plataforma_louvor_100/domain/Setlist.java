@@ -19,4 +19,5 @@ public class Setlist {
     private LocalDate data;
     private List<Musica> musicas;
     private List<Integrante> folgas;
+    private List<Integrante> escalados;
 }

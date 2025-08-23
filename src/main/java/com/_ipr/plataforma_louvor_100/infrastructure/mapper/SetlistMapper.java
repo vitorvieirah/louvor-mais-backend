@@ -11,6 +11,7 @@ public class SetlistMapper {
                 .data(entity.getData())
                 .musicas(MusicaMapper.paraDomains(entity.getMusicas()))
                 .folgas(IntegranteMapper.paraDomains(entity.getFolgas()))
+                .escalados(IntegranteMapper.paraDomains(entity.getEscalados()))
                 .build();
     }
 
@@ -20,6 +21,7 @@ public class SetlistMapper {
                 .data(domain.getData())
                 .musicas(MusicaMapper.paraEntities(domain.getMusicas()))
                 .folgas(IntegranteMapper.paraEntities(domain.getFolgas()))
+                .escalados(IntegranteMapper.paraEntities(domain.getEscalados()))
                 .build();
     }
 }

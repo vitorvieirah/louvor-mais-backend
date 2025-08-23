@@ -1,7 +1,5 @@
 package com._ipr.plataforma_louvor_100.entrypoint.dto;
 
-import com._ipr.plataforma_louvor_100.domain.Integrante;
-import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
@@ -12,7 +10,6 @@ import java.util.UUID;
 
 @Builder
 public record SetlistDto (
-
         @JsonProperty("id_setlist")
         UUID idSetlist,
 
@@ -25,6 +22,8 @@ public record SetlistDto (
         List<MusicaDto>musicas,
 
         @JsonProperty("folgas")
-        List<IntegranteDto> folgas
+        List<IntegranteDto> folgas,
 
+        @JsonProperty("escalados")
+        List<IntegranteDto> escalados
 ){}
