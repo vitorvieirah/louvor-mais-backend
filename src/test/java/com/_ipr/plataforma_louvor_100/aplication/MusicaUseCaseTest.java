@@ -108,7 +108,7 @@ class MusicaUseCaseTest {
                 .nome("Novo nome")
                 .tom(TomMusica.E)
                 .versao("versão editada nova")
-                .dificuldade(DificuldadeMusica.MEDIO)
+                .dificuldade(DificuldadeMusica.MEDIA)
                 .link("linknovoedicao")
                 .cifra("cifra nova edição")
                 .build();
