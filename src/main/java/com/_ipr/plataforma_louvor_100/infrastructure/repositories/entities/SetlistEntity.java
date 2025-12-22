@@ -1,6 +1,5 @@
 package com._ipr.plataforma_louvor_100.infrastructure.repositories.entities;
 
-import com._ipr.plataforma_louvor_100.domain.Integrante;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
 import jakarta.persistence.*;
 import lombok.*;
