@@ -6,6 +6,7 @@ import com._ipr.plataforma_louvor_100.domain.Integrante;
 import com._ipr.plataforma_louvor_100.domain.Setlist;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class SetlistUseCase {
 
     private final SetlistGateway gateway;
@@ -50,8 +52,10 @@ public class SetlistUseCase {
     }
 
     public void deletar(UUID idSetlist) {
+        log.info("Deletando musica: {}", idSetlist);
         this.validaSetlistExiste(idSetlist);
         gateway.deletar(idSetlist);
+        log.info("Musica deletada com sucesso.");
     }
 
     private void validaSetlistExiste(UUID idSetlist) {
