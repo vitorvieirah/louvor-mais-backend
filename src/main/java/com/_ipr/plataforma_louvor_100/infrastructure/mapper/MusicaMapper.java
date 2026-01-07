@@ -11,11 +11,13 @@ public class MusicaMapper {
         return Musica.builder()
                 .idMusica(entity.getIdMusica())
                 .nome(entity.getNome())
+                .artista(entity.getArtista())
                 .tom(entity.getTom())
-                .cifra(entity.getCifra())
+                .clima(entity.getClima())
+                .bpm(entity.getBpm())
+                .compositor(entity.getCompositor())
                 .link(entity.getLink())
-                .dificuldade(entity.getDificuldade())
-                .versao(entity.getVersao())
+                .cifra(entity.getCifra())
                 .build();
     }
 
@@ -23,11 +25,13 @@ public class MusicaMapper {
         return MusicaEntity.builder()
                 .idMusica(domain.getIdMusica())
                 .nome(domain.getNome())
+                .artista(domain.getArtista())
                 .tom(domain.getTom())
-                .cifra(domain.getCifra())
+                .clima(domain.getClima())
+                .bpm(domain.getBpm())
+                .compositor(domain.getCompositor())
                 .link(domain.getLink())
-                .dificuldade(domain.getDificuldade())
-                .versao(domain.getVersao())
+                .cifra(domain.getCifra())
                 .build();
     }
 

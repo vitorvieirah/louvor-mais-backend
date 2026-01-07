@@ -1,6 +1,6 @@
 package com._ipr.plataforma_louvor_100.entrypoint.dto;
 
-import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
+import com._ipr.plataforma_louvor_100.domain.musica.Clima;
 import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
@@ -18,20 +18,26 @@ public record MusicaDto(
         @JsonProperty("nome")
         String nome,
 
+        @JsonProperty("artista")
+        String artista,
+
         @JsonProperty("tom")
         TomMusica tom,
 
         @JsonProperty("decricao_tom")
         String descricaoTom,
 
-        @JsonProperty("versao")
-        String versao,
+        @JsonProperty("clima")
+        Clima clima,
 
-        @JsonProperty("dificuldade")
-        DificuldadeMusica dificuldade,
+        @JsonProperty("descricao_clima")
+        String descricaoClima,
 
-        @JsonProperty("descricao_dificuldade")
-        String descricaoDificuldade,
+        @JsonProperty("bpm")
+        Integer bpm,
+
+        @JsonProperty("compositor")
+        String compositor,
 
         @NotBlank(message = "O link da música é obrigatório")
         @JsonProperty("link")
