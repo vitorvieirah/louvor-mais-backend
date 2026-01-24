@@ -70,7 +70,6 @@ class MusicaHandlerControllerTest {
         Musica musica = MusicaBuilder.gerarMusicaDomain();
         String requestBody =  "{\"nome\": \""
                 + "\", \"tom\":\"" + musica.getTom()
-                + "\", \"versao\":\"" + musica.getVersao()
                 + "\", \"dificuldade\":\"" + musica.getClima()
                 + "\", \"link\":\"" + musica.getLink()
                 + "\", \"cifra\":\"" + musica.getCifra() + "\"}";

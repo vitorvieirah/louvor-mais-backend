@@ -107,8 +107,6 @@ class MusicaUseCaseTest {
                 .builder()
                 .nome("Novo nome")
                 .tom(TomMusica.E)
-                .versao("versão editada nova")
-                .calor(Clima.ALEGRE)
                 .link("linknovoedicao")
                 .cifra("cifra nova edição")
                 .build();

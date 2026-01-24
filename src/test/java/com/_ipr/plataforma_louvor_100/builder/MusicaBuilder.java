@@ -25,7 +25,6 @@ public class MusicaBuilder {
                 .cifra("linkcifrateste")
                 .clima(Clima.CALMA)
                 .link("linkdamusica")
-                .versao("Versão teste")
                 .build();
 
     }
@@ -38,7 +37,6 @@ public class MusicaBuilder {
                 .cifra("linkcifrateste")
                 .clima(Clima.CALMA)
                 .link("linkdamusica")
-                .versao("Versão teste")
                 .build();
 
     }
@@ -82,9 +80,7 @@ public class MusicaBuilder {
                 .nome("Musica teste")
                 .tom(TomMusica.D)
                 .cifra("linkcifrateste")
-                .dificuldade(Clima.CALMA)
                 .link("linkdamusica")
-                .versao("Versão teste")
                 .build();
     }
 
@@ -92,7 +88,6 @@ public class MusicaBuilder {
         Musica musica = gerarMusicaDomain();
         return "{\"nome\": \"" + musica.getNome()
                 + "\", \"tom\":\"" + musica.getTom()
-                + "\", \"versao\":\"" + musica.getVersao()
                 + "\", \"dificuldade\":\"" + musica.getClima()
                 + "\", \"link\":\"" + musica.getLink()
                 + "\", \"cifra\":\"" + musica.getCifra() + "\"}";
