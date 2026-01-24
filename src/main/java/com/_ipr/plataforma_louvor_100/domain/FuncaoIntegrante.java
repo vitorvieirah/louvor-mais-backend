@@ -12,7 +12,7 @@ public enum FuncaoIntegrante {
     VIOLAO(2, "Violao"),
     TECLADO(3, "Teclado"),
     BAIXO(4, "Baixo"),
-    MULTIINSTRUMENTALISTA(5, "Multiinstrumentista"),
+    MINISTRANTE(6, "Ministrante"),
     VOCAL(6, "Vocal");
 
     private final Integer codigo;
