@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum DificuldadeMusica {
-    FACIL(0, "Fácil"),
-    MEDIA(1, "Média"),
-    DIFICIL(2, "Dificil");
+public enum Clima {
+    CALMA(0, "Calma"),
+    ALEGRE(1, "Alegre"),
+    ANIMADA(2, "Animada");
 
     private final Integer codigo;
     private final String descricao;

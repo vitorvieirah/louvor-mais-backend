@@ -1,6 +1,6 @@
 package com._ipr.plataforma_louvor_100.builder;
 
-import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
+import com._ipr.plataforma_louvor_100.domain.musica.Clima;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
 import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
@@ -23,7 +23,7 @@ public class MusicaBuilder {
                 .nome("Musica teste")
                 .tom(TomMusica.D)
                 .cifra("linkcifrateste")
-                .dificuldade(DificuldadeMusica.FACIL)
+                .clima(Clima.CALMA)
                 .link("linkdamusica")
                 .versao("Versão teste")
                 .build();
@@ -36,7 +36,7 @@ public class MusicaBuilder {
                 .nome("Musica teste")
                 .tom(TomMusica.D)
                 .cifra("linkcifrateste")
-                .dificuldade(DificuldadeMusica.FACIL)
+                .clima(Clima.CALMA)
                 .link("linkdamusica")
                 .versao("Versão teste")
                 .build();
@@ -82,7 +82,7 @@ public class MusicaBuilder {
                 .nome("Musica teste")
                 .tom(TomMusica.D)
                 .cifra("linkcifrateste")
-                .dificuldade(DificuldadeMusica.FACIL)
+                .dificuldade(Clima.CALMA)
                 .link("linkdamusica")
                 .versao("Versão teste")
                 .build();
@@ -93,7 +93,7 @@ public class MusicaBuilder {
         return "{\"nome\": \"" + musica.getNome()
                 + "\", \"tom\":\"" + musica.getTom()
                 + "\", \"versao\":\"" + musica.getVersao()
-                + "\", \"dificuldade\":\"" + musica.getDificuldade()
+                + "\", \"dificuldade\":\"" + musica.getClima()
                 + "\", \"link\":\"" + musica.getLink()
                 + "\", \"cifra\":\"" + musica.getCifra() + "\"}";
     }

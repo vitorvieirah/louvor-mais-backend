@@ -8,13 +8,12 @@ import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,17 +31,24 @@ public class SetlistUseCase {
                 .map(musica -> musicaUseCase.consultarPorId(musica.getIdMusica()))
                 .toList();
 
-        List<Integrante> integrantesSeltist = new ArrayList<>();
+        List<Integrante> integrantesEscalados = setlist.getEscalados()
+                .stream()
+                .map(integrante -> integranteUseCase.consultarPorId(integrante.getIdIntegrante()))
+                .toList();
 
-        if(!setlist.getFolgas().isEmpty()) {
-            integrantesSeltist = setlist.getFolgas()
-                    .stream()
-                    .map(integrante -> integranteUseCase.consultarPorId(integrante.getIdIntegrante()))
-                    .toList();
-        }
+        List<Integrante> todosIntegrantes = integranteUseCase.listar(PageRequest.of(0, 100)).stream().toList();
+
+        Set<UUID> idsEscalados = integrantesEscalados.stream()
+                .map(Integrante::getIdIntegrante)
+                .collect(Collectors.toSet());
+
+        List<Integrante> integrantesFolga = todosIntegrantes.stream()
+                .filter(integrante -> !idsEscalados.contains(integrante.getIdIntegrante()))
+                .toList();
 
         setlist.setMusicas(musicasSetlist);
-        setlist.setFolgas(integrantesSeltist);
+        setlist.setEscalados(integrantesEscalados);
+        setlist.setFolgas(integrantesFolga);
 
         return gateway.salvar(setlist);
     }
@@ -61,7 +67,7 @@ public class SetlistUseCase {
     private void validaSetlistExiste(UUID idSetlist) {
         Optional<Setlist> setlistOptional = gateway.consultarPorId(idSetlist);
 
-        if(setlistOptional.isEmpty()) {
+        if (setlistOptional.isEmpty()) {
             throw new SetlistNaoEncontradoException();
         }
     }

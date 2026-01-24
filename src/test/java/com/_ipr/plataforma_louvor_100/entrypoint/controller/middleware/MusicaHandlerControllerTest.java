@@ -4,8 +4,6 @@ import com._ipr.plataforma_louvor_100.builder.MusicaBuilder;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.MusicaRepository;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
-import com._ipr.plataforma_louvor_100.validators.MusicaValidator;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -74,7 +71,7 @@ class MusicaHandlerControllerTest {
         String requestBody =  "{\"nome\": \""
                 + "\", \"tom\":\"" + musica.getTom()
                 + "\", \"versao\":\"" + musica.getVersao()
-                + "\", \"dificuldade\":\"" + musica.getDificuldade()
+                + "\", \"dificuldade\":\"" + musica.getClima()
                 + "\", \"link\":\"" + musica.getLink()
                 + "\", \"cifra\":\"" + musica.getCifra() + "\"}";
 

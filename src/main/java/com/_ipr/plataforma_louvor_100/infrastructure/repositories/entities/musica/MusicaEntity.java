@@ -1,6 +1,6 @@
 package com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica;
 
-import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
+import com._ipr.plataforma_louvor_100.domain.musica.Clima;
 import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,13 +25,17 @@ public class MusicaEntity {
 
     private String nome;
 
+    private String artista;
+
     @Enumerated(EnumType.ORDINAL)
     private TomMusica tom;
 
-    private String versao;
-
     @Enumerated(EnumType.ORDINAL)
-    private DificuldadeMusica dificuldade;
+    private Clima clima;
+
+    private Integer bpm;
+
+    private String compositor;
 
     private String link;
 

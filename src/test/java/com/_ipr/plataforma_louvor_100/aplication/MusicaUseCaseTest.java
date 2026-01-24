@@ -4,7 +4,7 @@ import com._ipr.plataforma_louvor_100.aplication.exceptions.musica.MusicaJaCadas
 import com._ipr.plataforma_louvor_100.aplication.exceptions.musica.MusicaNaoEncontradaException;
 import com._ipr.plataforma_louvor_100.aplication.gateways.MusicaGateway;
 import com._ipr.plataforma_louvor_100.builder.MusicaBuilder;
-import com._ipr.plataforma_louvor_100.domain.musica.DificuldadeMusica;
+import com._ipr.plataforma_louvor_100.domain.musica.Clima;
 import com._ipr.plataforma_louvor_100.domain.musica.Musica;
 import com._ipr.plataforma_louvor_100.domain.musica.TomMusica;
 import com._ipr.plataforma_louvor_100.infrastructure.mapper.MusicaMapper;
@@ -108,7 +108,7 @@ class MusicaUseCaseTest {
                 .nome("Novo nome")
                 .tom(TomMusica.E)
                 .versao("versão editada nova")
-                .dificuldade(DificuldadeMusica.MEDIA)
+                .calor(Clima.ALEGRE)
                 .link("linknovoedicao")
                 .cifra("cifra nova edição")
                 .build();

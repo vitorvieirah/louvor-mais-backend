@@ -29,12 +29,6 @@ public class IntegranteUseCase {
     }
 
     public Integrante cadastrar(Integrante novoIntegrante) {
-        Optional<Integrante> integranteOptional = gateway.consultarPorNome(novoIntegrante.getNome());
-
-        integranteOptional.ifPresent(integrante -> {
-            throw new IntegranteJaCadastradoException();
-        });
-
         return gateway.salvar(novoIntegrante);
     }
 

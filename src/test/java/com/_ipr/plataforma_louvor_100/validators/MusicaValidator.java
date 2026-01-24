@@ -5,8 +5,6 @@ import com._ipr.plataforma_louvor_100.entrypoint.dto.MusicaDto;
 import com._ipr.plataforma_louvor_100.infrastructure.repositories.entities.musica.MusicaEntity;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -15,7 +13,7 @@ public class MusicaValidator {
     public static void validaMusicaDomain(Musica comparacao1, Musica comparacao2) {
         Assertions.assertEquals(comparacao1.getTom(), comparacao2.getTom());
         Assertions.assertEquals(comparacao1.getVersao(), comparacao2.getVersao());
-        Assertions.assertEquals(comparacao1.getDificuldade(), comparacao2.getDificuldade());
+        Assertions.assertEquals(comparacao1.getClima(), comparacao2.getClima());
         Assertions.assertEquals(comparacao1.getLink(), comparacao2.getLink());
         Assertions.assertEquals(comparacao1.getCifra(), comparacao2.getCifra());
     }
@@ -33,7 +31,7 @@ public class MusicaValidator {
         Assertions.assertEquals(comparacao1.getIdMusica(), comparacao2.getIdMusica());
         Assertions.assertEquals(comparacao1.getTom(), comparacao2.getTom());
         Assertions.assertEquals(comparacao1.getVersao(), comparacao2.getVersao());
-        Assertions.assertEquals(comparacao1.getDificuldade(), comparacao2.getDificuldade());
+        Assertions.assertEquals(comparacao1.getClima(), comparacao2.getClima());
         Assertions.assertEquals(comparacao1.getLink(), comparacao2.getLink());
         Assertions.assertEquals(comparacao1.getCifra(), comparacao2.getCifra());
     }
@@ -42,7 +40,7 @@ public class MusicaValidator {
         Assertions.assertEquals(comparacao1.getIdMusica(), comparacao2.idMusica());
         Assertions.assertEquals(comparacao1.getTom(), comparacao2.tom());
         Assertions.assertEquals(comparacao1.getVersao(), comparacao2.versao());
-        Assertions.assertEquals(comparacao1.getDificuldade(), comparacao2.dificuldade());
+        Assertions.assertEquals(comparacao1.getClima(), comparacao2.dificuldade());
         Assertions.assertEquals(comparacao1.getLink(), comparacao2.link());
         Assertions.assertEquals(comparacao1.getCifra(), comparacao2.cifra());
     }
@@ -51,7 +49,7 @@ public class MusicaValidator {
         Assertions.assertEquals(comparacao1.getIdMusica(), comparacao2.getIdMusica());
         Assertions.assertEquals(comparacao1.getTom(), comparacao2.getTom());
         Assertions.assertEquals(comparacao1.getVersao(), comparacao2.getVersao());
-        Assertions.assertEquals(comparacao1.getDificuldade(), comparacao2.getDificuldade());
+        Assertions.assertEquals(comparacao1.getClima(), comparacao2.getClima());
         Assertions.assertEquals(comparacao1.getLink(), comparacao2.getLink());
         Assertions.assertEquals(comparacao1.getCifra(), comparacao2.getCifra());
     }
@@ -60,7 +58,7 @@ public class MusicaValidator {
         resultado.andExpect(jsonPath("$.dado.nome").value(comparacao.getNome()));
         resultado.andExpect(jsonPath("$.dado.tom").value(comparacao.getTom().toString().trim()));
         resultado.andExpect(jsonPath("$.dado.versao").value(comparacao.getVersao()));
-        resultado.andExpect(jsonPath("$.dado.dificuldade").value(comparacao.getDificuldade().toString().trim()));
+        resultado.andExpect(jsonPath("$.dado.dificuldade").value(comparacao.getClima().toString().trim()));
         resultado.andExpect(jsonPath("$.dado.link").value(comparacao.getLink()));
         resultado.andExpect(jsonPath("$.dado.cifra").value(comparacao.getCifra()));
     }
@@ -72,7 +70,7 @@ public class MusicaValidator {
         resultado.andExpect(jsonPath(jsonPathBase + "nome").value(comparacao.getNome()));
         resultado.andExpect(jsonPath(jsonPathBase + "tom").value(comparacao.getTom().toString().trim()));
         resultado.andExpect(jsonPath(jsonPathBase + "versao").value(comparacao.getVersao()));
-        resultado.andExpect(jsonPath(jsonPathBase + "dificuldade").value(comparacao.getDificuldade().toString().trim()));
+        resultado.andExpect(jsonPath(jsonPathBase + "dificuldade").value(comparacao.getClima().toString().trim()));
         resultado.andExpect(jsonPath(jsonPathBase + "link").value(comparacao.getLink()));
         resultado.andExpect(jsonPath(jsonPathBase + "cifra").value(comparacao.getCifra()));
     }
@@ -81,7 +79,7 @@ public class MusicaValidator {
         Assertions.assertEquals(resultado.idMusica(), comparacao.getIdMusica());
         Assertions.assertEquals(resultado.tom(), comparacao.getTom());
         Assertions.assertEquals(resultado.versao(), comparacao.getVersao());
-        Assertions.assertEquals(resultado.dificuldade(), comparacao.getDificuldade());
+        Assertions.assertEquals(resultado.dificuldade(), comparacao.getClima());
         Assertions.assertEquals(resultado.link(), comparacao.getLink());
         Assertions.assertEquals(resultado.cifra(), comparacao.getCifra());
     }
